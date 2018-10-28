@@ -16,30 +16,38 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author CHIDORY
+ * @author alejandrox33 grupo 6
  */
 public class ReservasData {
-    
     private Connection connection = null;
 
+//******************CONSTRUCTOR DE LA CLASE*************************************
+    
     public ReservasData(Conexion conexion) {
-        connection = conexion.getConexion();
+        try {
+            connection = conexion.getConexion();
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservasData.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+    
+//**************************GUARDAR RESERVA EN BD*******************************    
     
     public void guardarReservas(Reservas reservas){
         
         try {
             
-     String sql = "INTSERT INTO reservas (id_huesped, id_habitacion, cantPersonas, fechaEntrada, fechaSalida, importeTotal)"
-                    + "VALUES ( ?, ?, ?, ?, ?, ? );";
+     String sql = "INSERT INTO reservas (id_huesped, id_habitacion, cantDias, fechaEntrada, fechaSalida, importeTotal, estado) "
+                    +"VALUES ( ?, ?, ?, ?, ?, ?, ?);";
             
             PreparedStatement baseD = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             baseD.setInt(1, reservas.getHuesped().getId());
-            baseD.setInt(2, reservas.getHabitaciones().getId());
-            baseD.setInt(3, reservas.getCantPersonas());
+            baseD.setInt(2, reservas.getHabitaciones().getId_habitacion());
+            baseD.setInt(3, reservas.getCantDias());
             baseD.setDate(4, Date.valueOf(reservas.getFechaEntrada()));
             baseD.setDate(5, Date.valueOf(reservas.getFechaSalida()));
             baseD.setDouble(6, reservas.getImporteTotal());
+            baseD.setBoolean(7, reservas.getEstado());
             
             baseD.executeUpdate();
             ResultSet resultado = baseD.getGeneratedKeys();
@@ -59,6 +67,6 @@ public class ReservasData {
     }
     
     
-    
+//**************************BUSCAR RESERVAS*************************************    
     
 }
