@@ -10,16 +10,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
- * @author CHIDORY
+ * @author alejandrox33 grupo 6
  */
 public class HuespedData {
     private Connection connection = null;
-
+    
+//************************CONTRUCTOR DE LA CLASE********************************
+    
+    
     public HuespedData(Conexion conexion) {
         try {
             connection = conexion.getConexion();
@@ -31,37 +33,42 @@ public class HuespedData {
         }
         
     }
-
+    
+//**********************METODO GUARDAR HUESPE***********************************
+    
+    
    public void guardarHuesped(Huesped huesped){
-       
-            
+                  
        
                try {
                    
-            String sql = "INSERT INTO huesped (nombre, dni, domicilio, correo) VALUES ( ? , ? , ?, ? );";
+            String sql = "INSERT INTO huesped (nombre, dni, domicilio, correo,celular) VALUES ( ? , ? , ?, ?, ?);";
                    
-            PreparedStatement guardar = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            guardar.setString(1, huesped.getNombre());
-            guardar.setInt(2, huesped.getDni());
-            guardar.setString(3, huesped.getDomicilio());
-            guardar.setString(4, huesped.getCorreo());
+            PreparedStatement baseD = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            baseD.setString(1, huesped.getNombre());
+            baseD.setInt(2, huesped.getDni());
+            baseD.setString(3, huesped.getDomicilio());
+            baseD.setString(4, huesped.getCorreo());
+            baseD.setInt(5, huesped.getCelular());
             
-            guardar.executeQuery();
+            baseD.executeUpdate();
             
-            ResultSet resul = guardar.getGeneratedKeys();
+            ResultSet resul = baseD.getGeneratedKeys();
             
             if (resul.next()) {
                 huesped.setId(resul.getInt(1));
             } else {
                 System.out.println("No se pudo obtener el id luego de insertar un huesped");
             }
-            guardar.close();
+            baseD.close();
             
             
         } catch (SQLException ex) {
             System.out.println("Error al insertar un huesped: " + ex.getMessage());
         }
-   }
+   }     
+   
+   //********************METODO PARA BUSCAR UN HUESPED**************************
    
    public Huesped buscarHuesped(int id){
          Huesped huesped = null;
@@ -69,7 +76,7 @@ public class HuespedData {
     
     try {
             
-            String sql = "SELECT * FROM huesped WHERE id =?;";
+            String sql = "SELECT * FROM huesped WHERE id_huesped =?;";
 
             PreparedStatement baseD = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             baseD.setInt(1, id);
@@ -88,17 +95,51 @@ public class HuespedData {
                 
             }      
             baseD.close();
-            
-            
-            
-            
-    
+                                  
+                
         } catch (SQLException ex) {
             System.out.println("Error al buscar un huesped: " + ex.getMessage());
         }
         
         return huesped;
     }
+   
+   
+   //********************METODO OBTENER UN HUESPED******************************
+   
+   
+   public List<Huesped> obtenerHuesped(){
+       List<Huesped> huespeds = new ArrayList<>();
+       
+       
+        try {
+            
+            String sql = "SELECT id_huesped, nombre, dni, domicilio, correo FROM huesped; ";
+            PreparedStatement baseD = connection.prepareCall(sql);
+            ResultSet resultado = baseD.executeQuery();
+            Huesped huesped;
+            while(resultado.next()){
+                huesped = new Huesped();
+                huesped.setId(resultado.getInt("id_huesped"));
+                huesped.setNombre(resultado.getString("nombre"));
+                huesped.setDni(resultado.getInt("dni"));
+                huesped.setDomicilio(resultado.getString("domicilio"));
+                huesped.setCorreo(resultado.getString("correo"));
+                
+                huespeds.add(huesped);
+            }
+            baseD.close();
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al obtener los huespedes: " + ex.getMessage());
+        }
+       
+        return huespeds;
+   }
+  
+   
+  //*****************METODO ACTUALIZAR UN HUESPED*******************************
+   
    
    public void actualizarHuesped(Huesped huesped){
       
@@ -120,6 +161,10 @@ public class HuespedData {
             System.out.println("Error al actualizar un huesped: " + ex.getMessage());
         }
    }
+   
+   
+ //*********************METODO BORRAR UN HUESPED********************************
+   
    
    public void borrarHuesped(int id){
     try {

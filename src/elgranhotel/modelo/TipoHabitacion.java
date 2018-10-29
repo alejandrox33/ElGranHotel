@@ -10,7 +10,7 @@ package elgranhotel.modelo;
  * @author CHIDORY
  */
 public class TipoHabitacion {
-    private int id = -1;
+    private int id_thabitacion = -1 ;
     private String tipo; //(Estándar simple, doble, Triple, o Suite Lujo) 
     private int codigo;
     private int cantPersonas;
@@ -18,10 +18,10 @@ public class TipoHabitacion {
     private String tipoCamas; //(Simples, Queen, King Size)
     private double precioNoche;
 
-    public TipoHabitacion(int id, String tipo, int codigo, int cantPersonas,
+    public TipoHabitacion(int id_thabitacion, String tipo, int codigo, int cantPersonas,
                                             int cantCamas, String tipoCamas, double precioNoche) {
         
-        this.id = id;
+        this.id_thabitacion = id_thabitacion;
         this.tipo = tipo; //(Estándar simple, doble, Triple, o Suite Lujo) 
         this.codigo = codigo;
         this.cantPersonas = cantPersonas;
@@ -45,15 +45,16 @@ public class TipoHabitacion {
     public TipoHabitacion(String tipo) {
         this.tipo = tipo;
     }
-    
-    
 
-    public int getId() {
-        return id;
+    public TipoHabitacion() {
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getId_thabitacion() {
+        return id_thabitacion;
+    }
+
+    public void setId_thabitacion(int id_thabitacion) {
+        this.id_thabitacion = id_thabitacion;
     }
 
     public String getTipo() {
@@ -103,6 +104,5 @@ public class TipoHabitacion {
     public void setPrecioNoche(double precioNoche) {
         this.precioNoche = precioNoche;
     }
-    
-    
+          
 }

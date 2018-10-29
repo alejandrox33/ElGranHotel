@@ -19,38 +19,38 @@ public class Reservas {
     private int id = -1;
     private Huesped huesped;
     private Habitacion habitaciones;
-    private int cantPersonas;
+    private int cantDias;
     private LocalDate fechaEntrada;
     private LocalDate fechaSalida;
     private double importeTotal;
-   
+    private boolean estado;
 
-    public Reservas(int id, Huesped huesped, Habitacion habitaciones, int cantPersonas, 
-                                         LocalDate fechaEntrada, LocalDate fechaSalida, double importeTotal) {
-        
+    public Reservas(int id, Huesped huesped, Habitacion habitaciones, int cantDias, 
+                        LocalDate fechaEntrada, LocalDate fechaSalida, double importeTotal, boolean estado) {
         
         this.id = id;
         this.huesped = huesped;
         this.habitaciones = habitaciones;
-        this.cantPersonas = cantPersonas;
+        this.cantDias = cantDias;
         this.fechaEntrada = fechaEntrada;
         this.fechaSalida = fechaSalida;
         this.importeTotal = importeTotal;
+        this.estado = estado;
     }
 
-    public Reservas(Huesped huesped, Habitacion habitaciones, int cantPersonas, 
-                                 LocalDate fechaEntrada, LocalDate fechaSalida, double importeTotal) {
-        
+    public Reservas(Huesped huesped, Habitacion habitaciones, int cantDias, LocalDate fechaEntrada, 
+                                       LocalDate fechaSalida, double importeTotal, boolean estado) {
         
         this.huesped = huesped;
         this.habitaciones = habitaciones;
-        this.cantPersonas = cantPersonas;
+        this.cantDias = cantDias;
         this.fechaEntrada = fechaEntrada;
         this.fechaSalida = fechaSalida;
         this.importeTotal = importeTotal;
+        this.estado = estado;
     }
-
-    public Reservas() {
+   
+     public Reservas() {
     }
 
     public int getId() {
@@ -77,12 +77,12 @@ public class Reservas {
         this.habitaciones = habitaciones;
     }
 
-    public int getCantPersonas() {
-        return cantPersonas;
+    public int getCantDias() {
+        return cantDias;
     }
 
-    public void setCantPersonas(int cantPersonas) {
-        this.cantPersonas = cantPersonas;
+    public void setCantDias(int cantDias) {
+        this.cantDias = cantDias;
     }
 
     public LocalDate getFechaEntrada() {
@@ -108,7 +108,14 @@ public class Reservas {
     public void setImporteTotal(double importeTotal) {
         this.importeTotal = importeTotal;
     }
-    
-    
 
+    public boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+       
+   
 }

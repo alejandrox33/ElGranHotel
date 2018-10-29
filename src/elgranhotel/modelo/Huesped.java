@@ -10,27 +10,40 @@ package elgranhotel.modelo;
  * @author CHIDORY
  */
 public class Huesped {
-    private int id = -1 ;
+    private int id_huesped = -1;
     private String nombre;
     private int dni;
     private String domicilio;
     private String correo;
+    private int celular;
 
-    public Huesped(int id, String nombre, int dni, String domicilio, String correo) {
-        this.id = id;
+    public Huesped(int id_huesped, String nombre, int dni, String domicilio, String correo, int celular) {
+        this.id_huesped = id_huesped;
         this.nombre = nombre;
         this.dni = dni;
         this.domicilio = domicilio;
         this.correo = correo;
+        this.celular = celular;
     }
 
-    public Huesped(String nombre, int dni, String domicilio) {
+    public Huesped(String nombre, int dni, String domicilio, String correo, int celular) {
         this.nombre = nombre;
         this.dni = dni;
         this.domicilio = domicilio;
+        this.correo = correo;
+        this.celular = celular;
     }
 
+    
     public Huesped() {
+    }
+
+    public int getCelular() {
+        return celular;
+    }
+
+    public void setCelular(int celular) {
+        this.celular = celular;
     }
     
     
@@ -38,11 +51,11 @@ public class Huesped {
     
 
     public int getId() {
-        return id;
+        return id_huesped;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int id_huesped) {
+        this.id_huesped = id_huesped;
     }
 
     public String getNombre() {

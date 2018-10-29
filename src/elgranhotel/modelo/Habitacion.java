@@ -14,47 +14,52 @@ package elgranhotel.modelo;
  * @author CHIDORY
  */
 public class Habitacion {
-    private int id = -1;
-    private Huesped huesped;
+    private int id_habitacion = -1 ;
+    private int piso;
     private TipoHabitacion thabitacion;
     private boolean estado;
 
-    public Habitacion(int id, Huesped huesped, TipoHabitacion thabitacion, boolean estado) {
-        this.id = id;
-        this.huesped = huesped;
+    public Habitacion(int id_habitacion, int piso, TipoHabitacion thabitacion, boolean estado) {
+        this.id_habitacion = id_habitacion;
+        this.piso = piso;
         this.thabitacion = thabitacion;
         this.estado = estado;
     }
 
-    public Habitacion(Huesped huesped, TipoHabitacion thabitacion, boolean estado) {
-        this.huesped = huesped;
+    public Habitacion(int piso, TipoHabitacion thabitacion, boolean estado) {
+        this.piso = piso;
         this.thabitacion = thabitacion;
         this.estado = estado;
     }
 
+    public Habitacion(TipoHabitacion thabitacion, boolean estado) {
+        this.thabitacion = thabitacion;
+        this.estado = estado;
+    }
     
-
+       
     public Habitacion() {
+        
     }
     
-    public double calcularMonto(int cantDias){
+    public double calcularMonto(int cantDias){          // Metodo para calcular el monto
         return thabitacion.getPrecioNoche() * cantDias;
     }
 
-    public int getId() {
-        return id;
+    public int getId_habitacion() {
+        return id_habitacion;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_habitacion(int id_habitacion) {
+        this.id_habitacion = id_habitacion;
     }
 
-    public Huesped getHuesped() {
-        return huesped;
+    public int getPiso() {
+        return piso;
     }
 
-    public void setHuesped(Huesped huesped) {
-        this.huesped = huesped;
+    public void setPiso(int piso) {
+        this.piso = piso;
     }
 
     public TipoHabitacion getThabitacion() {
@@ -65,7 +70,7 @@ public class Habitacion {
         this.thabitacion = thabitacion;
     }
 
-    public boolean isEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
@@ -73,9 +78,5 @@ public class Habitacion {
         this.estado = estado;
     }
 
-    
-    
-
-   
-    
+                 
 }
