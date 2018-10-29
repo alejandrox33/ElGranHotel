@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,14 +22,16 @@ import java.util.logging.Logger;
  */
 public class ReservasData {
     private Connection connection = null;
+    private Conexion conexion;
 
 //******************CONSTRUCTOR DE LA CLASE*************************************
     
     public ReservasData(Conexion conexion) {
         try {
+            this.conexion=conexion;
             connection = conexion.getConexion();
         } catch (SQLException ex) {
-            Logger.getLogger(ReservasData.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error al obtener la conexion");
         }
     }
     
@@ -67,6 +71,70 @@ public class ReservasData {
     }
     
     
-//**************************BUSCAR RESERVAS*************************************    
+//**************************OBTENER RESERVAS POR HUESPED*************************
+    
+    public List<Reservas> buscarReservaXhuesped(int id){
+        List<Reservas> Reservadas = new ArrayList<>();
+        
+        try {
+            
+            
+            String sql = "SELECT * FROM Reservas WHERE id_huesped = ?;";
+            
+            PreparedStatement baseD = connection.prepareStatement(sql);
+            baseD.setInt(1, id);
+            ResultSet resultado = baseD.executeQuery();
+            Reservas res;
+            
+            while(resultado.next()){
+                res = new Reservas();
+                res.setId(resultado.getInt("id"));
+                
+                Huesped hu = buscarHues(resultado.getInt("id_huesped"));
+                res.setHuesped(hu);
+                
+                                
+                Habitacion hab = buscarHab(resultado.getInt("id_habitacion"));
+                res.setHabitaciones(hab);
+                        
+                TipoHabitacion th = buscaThab(resultado.getInt("id_thabitacion"));        
+                hab.setThabitacion(th);
+                
+                res.setCantDias(resultado.getInt("cantDias"));
+                res.setFechaEntrada(resultado.getDate("fechaEntrada").toLocalDate());
+                res.setFechaSalida(resultado.getDate("fechaSalida").toLocalDate());
+                res.setImporteTotal(resultado.getDouble("importeTotal"));
+                res.setEstado(resultado.getBoolean("estado"));
+                
+                
+                Reservadas.add(res);
+                        
+            }
+            baseD.close();
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al obtener las Reservas por Huesped: " + ex.getMessage());
+        }
+        
+        return Reservadas;      
+    }
+
+
+//*****************METODOS BUSCAR***********************************************    
+    
+    public Huesped buscarHues(int id){
+            HuespedData hd = new HuespedData(conexion);
+            return hd.buscarHuesped(id);
+    }
+    
+    public Habitacion buscarHab(int id){
+        HabitacionData hbd = new HabitacionData(conexion);
+        return hbd.buscarHabitacion(id);
+    }
+    
+    public TipoHabitacion buscaThab(int id){
+        TipoHabitacionData thab = new TipoHabitacionData(conexion);
+        return thab.buscarThabitacion(id);
+    }
     
 }
