@@ -45,12 +45,9 @@ public class Huesped {
     public void setCelular(int celular) {
         this.celular = celular;
     }
-    
-    
-    
-    
+      
 
-    public int getId() {
+    public int getId_huesped() {
         return id_huesped;
     }
 

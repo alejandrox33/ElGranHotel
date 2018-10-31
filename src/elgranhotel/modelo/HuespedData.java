@@ -25,7 +25,7 @@ public class HuespedData {
     public HuespedData(Conexion conexion) {
         try {
             connection = conexion.getConexion();
-            System.out.println("Conexion Establecida con exito!!!");
+            System.out.println("Conexion Establecida con exito en HuespedData");
             
             
         } catch (Exception e) {
@@ -145,13 +145,14 @@ public class HuespedData {
       
                 try {
             
-            String sql = "UPDATE huesped SET nombre = ?, dni = ?, domicilio = ?, correo = ?;";
+            String sql = "UPDATE huesped SET nombre = ?, dni = ?, domicilio = ?, correo = ? WHERE id_huesped =?;";
             
             PreparedStatement datos = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             datos.setString(1, huesped.getNombre());
             datos.setInt(2, huesped.getDni());
             datos.setString(3, huesped.getDomicilio());
             datos.setString(4, huesped.getCorreo());
+            datos.setInt(5, huesped.getId_huesped());
             
             datos.executeUpdate();
             datos.close();
@@ -169,7 +170,7 @@ public class HuespedData {
    public void borrarHuesped(int id){
     try {
             
-            String sql = "DELETE FROM huesped WHERE id =?;";
+            String sql = "DELETE FROM huesped WHERE id_huesped =?;";
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, id);

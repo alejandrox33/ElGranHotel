@@ -29,6 +29,7 @@ public class HabitacionData {
       try {
             this.conexion=conexion;
             connection = conexion.getConexion();
+            System.out.println("Conexion Establecida con exito en HabitacionData");
         } catch (SQLException ex) {
             System.out.println("Error al abrir al obtener la conexion");
         }
@@ -191,7 +192,7 @@ public class HabitacionData {
     //*****************METODO PARA BORRAR UNA HABITACION************************
     
     
-     public void borrarHabitacion(int id_habitacion){
+    public void borrarHabitacion(int id_habitacion){
             String sql = "DELETE FROM habitacion WHERE id_habitacion =?; ";
             
         try {
@@ -207,6 +208,52 @@ public class HabitacionData {
             System.out.println("Error al borrar una habitacion: " + ex.getMessage());
         }
            
+}
+     
+     
+     //****************************BUSCAR POR TIPO Y CANTPERSONAS********************
+
+
+    public List<Habitacion> buscarHabporTipo(String tipo, int cantPer, boolean estado){
+             List<Habitacion> habitaciones = new ArrayList<>();
+            
+                
+        try {
+            
+            String sql = "SELECT * FROM habitacion t, tipohabitacion th WHERE t.id_habitacion = th.id_thabitacion "
+                       + "AND tipo =? AND cantPersonas =? AND estado =?;";
+            
+            PreparedStatement baseD = connection.prepareStatement(sql, com.mysql.jdbc.Statement.RETURN_GENERATED_KEYS);
+            baseD.setString(1, tipo);
+            baseD.setInt(2, cantPer);
+            baseD.setBoolean(3, estado);
+            
+            ResultSet resultado = baseD.executeQuery();
+            Habitacion hab = null;
+            
+            while(resultado.next()){
+                hab = new Habitacion();
+                hab.setId_habitacion(resultado.getInt("id_habitacion"));
+                hab.setPiso(resultado.getInt("piso"));
+                
+                TipoHabitacion t = buscarTHabitacion(resultado.getInt("id_thabitacion"));
+                hab.setThabitacion(t);
+                
+                hab.setEstado(resultado.getBoolean("estado"));
+                                              
+                habitaciones.add(hab);
+                
+            }
+                                               
+                        
+            baseD.close();
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar un Tipo de Habitacion: " + ex.getMessage());
         }
+        
+        return habitaciones;
+        
+    }  
     
 }

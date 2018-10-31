@@ -30,6 +30,7 @@ public class ReservasData {
         try {
             this.conexion=conexion;
             connection = conexion.getConexion();
+            System.out.println("Conexion Establecida con exito en ReservasData");
         } catch (SQLException ex) {
             System.out.println("Error al obtener la conexion");
         }
@@ -42,10 +43,10 @@ public class ReservasData {
         try {
             
      String sql = "INSERT INTO reservas (id_huesped, id_habitacion, cantDias, fechaEntrada, fechaSalida, importeTotal, estado) "
-                    +"VALUES ( ?, ?, ?, ?, ?, ?, ?);";
+                    + "VALUES ( ?, ?, ?, ?, ?, ?, ?);";
             
             PreparedStatement baseD = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            baseD.setInt(1, reservas.getHuesped().getId());
+            baseD.setInt(1, reservas.getHuesped().getId_huesped());
             baseD.setInt(2, reservas.getHabitaciones().getId_habitacion());
             baseD.setInt(3, reservas.getCantDias());
             baseD.setDate(4, Date.valueOf(reservas.getFechaEntrada()));
@@ -61,10 +62,9 @@ public class ReservasData {
             } else {
                 System.out.println("No se pudo obtener el id luego de insertar una reserva");
             }
+            
              baseD.close();
-            
-            
-            
+                                    
         } catch (SQLException ex) {
             System.out.println("Error al insertar una reserva: " + ex.getMessage());
         }
@@ -73,13 +73,15 @@ public class ReservasData {
     
 //**************************OBTENER RESERVAS POR HUESPED*************************
     
-    public List<Reservas> buscarReservaXhuesped(int id){
+    public List<Reservas> obtenerReservasXhuesped(int id){
         List<Reservas> Reservadas = new ArrayList<>();
         
         try {
             
             
-            String sql = "SELECT * FROM Reservas WHERE id_huesped = ?;";
+            String sql = "SELECT * FROM Reservas r, tipohabitacion th WHERE r.id = th.id_thabitacion "
+                       + "AND id_huesped = ?;";
+            
             
             PreparedStatement baseD = connection.prepareStatement(sql);
             baseD.setInt(1, id);
@@ -96,10 +98,11 @@ public class ReservasData {
                                 
                 Habitacion hab = buscarHab(resultado.getInt("id_habitacion"));
                 res.setHabitaciones(hab);
-                        
-                TipoHabitacion th = buscaThab(resultado.getInt("id_thabitacion"));        
-                hab.setThabitacion(th);
                 
+                TipoHabitacion t = buscaThab(resultado.getInt("id_thabitacion"));
+                hab.setThabitacion(t);
+                
+                               
                 res.setCantDias(resultado.getInt("cantDias"));
                 res.setFechaEntrada(resultado.getDate("fechaEntrada").toLocalDate());
                 res.setFechaSalida(resultado.getDate("fechaSalida").toLocalDate());
