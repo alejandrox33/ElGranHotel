@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author CHIDORY
@@ -26,6 +28,7 @@ public class TipoHabitacionData {
        try {
             
             connection = conexion.getConexion();
+            System.out.println("Conexion Establecida con exito en TipoHabitacionData");
         } catch (SQLException ex) {
             System.out.println("Error al abrir al obtener la conexion");
         }
@@ -100,14 +103,8 @@ public class TipoHabitacionData {
                 tipo1.setPrecioNoche(resultado.getDouble("precioNoche"));
                 
             }
-            
-                                   
-            /*  if (resultado.next()) {
-            tipo1.setId_thabitacion(resultado.getInt(1));
-            } else {
-            System.out.println("No se pudo obtener el id luego de insertar la habitacion");
-            }*/
-            
+                                               
+                        
             baseD.close();
             
         } catch (SQLException ex) {
@@ -207,5 +204,28 @@ public class TipoHabitacionData {
             System.out.println("Error al borrar un tipo de habitacion: " + ex.getMessage());
         }
     }
+    
+    
+//*************************ACTUALIZA PRECIO ************************************
+
+    public void actualizaPrecio(int id_habitacion, int id_thabitacion, double precio){
+        
+        try {
+            String sql = "UPDATE tipohabitacion SET precioNoche =? WHERE id_habitacion =? AND id_thabitacion";
+            PreparedStatement baseD = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            baseD.setDouble(1, precio);
+            baseD.setInt(2, id_habitacion);
+            baseD.setInt(3, id_thabitacion);
+            
+            baseD.executeUpdate();
+            baseD.close();
+            
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al actualizar precio: " + ex.getMessage());
+        }
+    
+    
+    }    
        
 }
