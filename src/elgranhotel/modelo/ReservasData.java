@@ -85,6 +85,7 @@ public class ReservasData {
             
             PreparedStatement baseD = connection.prepareStatement(sql);
             baseD.setInt(1, id);
+            
             ResultSet resultado = baseD.executeQuery();
             Reservas res;
             
@@ -126,8 +127,8 @@ public class ReservasData {
 //*****************METODOS BUSCAR***********************************************    
     
     public Huesped buscarHues(int id){
-            HuespedData hd = new HuespedData(conexion);
-            return hd.buscarHuesped(id);
+        HuespedData hd = new HuespedData(conexion);
+        return hd.buscarHuesped(id);
     }
     
     public Habitacion buscarHab(int id){
@@ -139,5 +140,143 @@ public class ReservasData {
         TipoHabitacionData thab = new TipoHabitacionData(conexion);
         return thab.buscarThabitacion(id);
     }
+    
+    
+//**********************BUSCAR RESERVA******************************************
+
+
+    public Reservas buscarReservas(int id){
+    
+        Reservas reserva = null;
+    
+        try {
+                                    
+            String sql = "SELECT * FROM reservas,tipohabitacion WHERE id =?;";
+            PreparedStatement baseD = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            baseD.setInt(1, id);
+            
+            ResultSet resultado = baseD.executeQuery();
+            
+            while(resultado.next()){
+                reserva = new Reservas();
+                reserva.setId(resultado.getInt("id"));
+                
+                Huesped hus = buscarHues(resultado.getInt("id_huesped"));
+                reserva.setHuesped(hus);
+                
+                Habitacion hab = buscarHab(resultado.getInt("id_habitacion"));
+                reserva.setHabitaciones(hab);
+                
+                TipoHabitacion tha = buscaThab(resultado.getInt("id_thabitacion"));
+                hab.setThabitacion(tha);
+                
+                reserva.setCantDias(resultado.getInt("cantDias"));
+                reserva.setFechaEntrada(resultado.getDate("fechaEntrada").toLocalDate());
+                reserva.setFechaSalida(resultado.getDate("fechaSalida").toLocalDate());
+                reserva.setImporteTotal(resultado.getDouble("importeTotal"));
+                reserva.setEstado(resultado.getBoolean("estado"));
+                
+            }
+            
+            baseD.close();
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar una Reserva: " + ex.getMessage());
+        }
+        
+    return reserva;
+        
+}    
+    
+//*******************BUSCAR RESERVA POR HUESPED*********************************
+
+
+    public Reservas buscarReservasporhuesped(int id_huesped){
+    
+        Reservas reserva = null;
+    
+        try {
+                                    
+            String sql = "SELECT * FROM reservas,tipohabitacion WHERE id_huesped =?;";
+            PreparedStatement baseD = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            baseD.setInt(1, id_huesped);
+            
+            ResultSet resultado = baseD.executeQuery();
+            
+            while(resultado.next()){
+                reserva = new Reservas();
+                reserva.setId(resultado.getInt("id"));
+                
+                Huesped hus = buscarHues(resultado.getInt("id_huesped"));
+                reserva.setHuesped(hus);
+                
+                Habitacion hab = buscarHab(resultado.getInt("id_habitacion"));
+                reserva.setHabitaciones(hab);
+                
+                TipoHabitacion tha = buscaThab(resultado.getInt("id_thabitacion"));
+                hab.setThabitacion(tha);
+                
+                reserva.setCantDias(resultado.getInt("cantDias"));
+                reserva.setFechaEntrada(resultado.getDate("fechaEntrada").toLocalDate());
+                reserva.setFechaSalida(resultado.getDate("fechaSalida").toLocalDate());
+                reserva.setImporteTotal(resultado.getDouble("importeTotal"));
+                reserva.setEstado(resultado.getBoolean("estado"));
+                
+            }
+            
+            baseD.close();
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar una Reserva por huesped: " + ex.getMessage());
+        }
+        
+    return reserva;
+        
+}    
+    
+    
+//*****************************FIN RESERVA**************************************
+    
+    public Reservas finReserava(Huesped huesped){
+        
+            Reservas reserva = null;
+        
+                            
+         try {
+            
+            reserva = buscarReservasporhuesped(huesped.getId_huesped());
+                                    
+            String sql = "UPDATE reservas SET estado =0 WHERE id_huesped =?;";
+            
+            PreparedStatement baseD = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            baseD.setInt(1, reserva.getHuesped().getId_huesped());
+                                    
+            baseD.executeUpdate();
+                                   
+            baseD.close();
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al actualizar estado de una reserva: " + ex.getMessage());
+        }
+        
+         try {
+                                    
+            String sql = "UPDATE habitacion SET estado =0 WHERE id_habitacion =?;";
+            
+            PreparedStatement baseD = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            baseD.setInt(1, reserva.getHabitaciones().getId_habitacion());
+                                    
+            baseD.executeUpdate();
+                                   
+            baseD.close();
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al actualizar estado de una habitacion: " + ex.getMessage());
+        }
+        
+        
+    return reserva;
+    
+    }  
     
 }
