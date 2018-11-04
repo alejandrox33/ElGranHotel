@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Alejandrox33 grupo 6
@@ -214,7 +216,7 @@ public class HabitacionData {
      //****************************BUSCAR POR TIPO Y CANTPERSONAS********************
 
 
-    public List<Habitacion> buscarHabporTipo(String tipo, int cantPer, boolean estado){
+    public List<Habitacion> obtenerHabiporTipo(String tipo, int cantPer, boolean estado){
              List<Habitacion> habitaciones = new ArrayList<>();
             
                 
@@ -256,4 +258,35 @@ public class HabitacionData {
         
     }  
     
+//***********************CREAR HABITACIONES POR TIPO****************************
+
+    
+    public List<Habitacion> crearHabitacionPorTipo(int desde, int hasta, String tipo, int codigo, int cantpersonas, int cantCamas, String tipoCamas, double precioNoche , boolean estado) {
+        List<Habitacion> habitaciones = new ArrayList<>();
+        int cantidad = Math.abs(desde - hasta) + 1;
+
+        for (int i = 0; i < cantidad; i++) {
+            Habitacion ha = null;
+
+            try {
+                TipoHabitacionData thaD = new TipoHabitacionData(conexion);
+                TipoHabitacion thab = new TipoHabitacion(tipo, codigo, cantpersonas, cantCamas, tipoCamas, precioNoche);
+                thaD.guardarTipoH(thab);
+                TipoHabitacion id_tipo = buscarTHabitacion(thab.getId_thabitacion());
+
+                HabitacionData haD = new HabitacionData(conexion);
+                ha = new Habitacion(id_tipo, estado);
+                haD.guardarHabitacion(ha);
+
+            } catch (SQLException ex) {
+                System.out.println("Error no se pudieron insertar las habitaciones por tipo");
+            }
+
+            habitaciones.add(ha);
+
+        }
+
+        return habitaciones;
+    }
+
 }
