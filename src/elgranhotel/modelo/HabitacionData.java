@@ -166,7 +166,7 @@ public class HabitacionData {
     
     
     
-//*****************METODO PARA ACTUALIZAR UNA HABITACION************************
+//*****************METODO PARA ACTUALIZAR ESTADO HABITACION************************
     
     
     public void actualizarEstadoHabitacion(int id_habitacion, int id_thabitacion, boolean estado ){
@@ -261,8 +261,7 @@ public class HabitacionData {
 //***********************CREAR HABITACIONES POR TIPO****************************
 
     
-    public List<Habitacion> crearHabitacionPorTipo(int desde, int hasta, String tipo, int codigo, int cantpersonas, int cantCamas, String tipoCamas, double precioNoche , boolean estado) {
-        List<Habitacion> habitaciones = new ArrayList<>();
+    public void crearHabitacionPorTipo(int desde, int hasta, String tipo, int codigo, int cantpersonas, int cantCamas, String tipoCamas, double precioNoche , boolean estado) {
         int cantidad = Math.abs(desde - hasta) + 1;
 
         for (int i = 0; i < cantidad; i++) {
@@ -282,11 +281,33 @@ public class HabitacionData {
                 System.out.println("Error no se pudieron insertar las habitaciones por tipo");
             }
 
-            habitaciones.add(ha);
-
+            
         }
 
-        return habitaciones;
+        
+    }
+    
+    
+//*******************ACTUALIZAR HABITACION**************************************
+
+
+    public void actualizarHabitacion(Habitacion habitacion) {
+
+        try {
+            String sql = "UPDATE FROM habitacion SET piso =?, id_thabitacion =?, estado =? WHERE id_habitacion =?;";
+
+            PreparedStatement baseD = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            baseD.setInt(1, habitacion.getPiso());
+            baseD.setInt(2, habitacion.getThabitacion().getId_thabitacion());
+            baseD.setBoolean(3, habitacion.getEstado());
+            baseD.setInt(4, habitacion.getId_habitacion());
+
+            baseD.executeUpdate();
+            baseD.close();
+
+        } catch (SQLException ex) {
+            System.out.println("Error al actualizar una habitacion: " + ex.getMessage());
+        }
     }
 
 }
