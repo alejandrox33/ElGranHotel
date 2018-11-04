@@ -277,4 +277,34 @@ public class ReservasData {
 
     }
 
+    
+//***************************ACTUALIZAR RESERVA*********************************
+    
+    
+    public void actualizarReserva(Reservas reserva){
+        
+        try {
+            String sql = "UPDATE FROM reserva SET huesped ?, habitaciones =?, cantDias =?, fechaEntrada =?, fechaSalida =?, importeTotal =?, estado =? "
+                       + "WHERE id =? ;";
+            
+            PreparedStatement baseD = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            baseD.setInt(1, reserva.getHuesped().getId_huesped());
+            baseD.setInt(2, reserva.getHabitaciones().getId_habitacion());
+            baseD.setInt(3, reserva.getCantDias());
+            baseD.setDate(4, Date.valueOf(reserva.getFechaEntrada()));
+            baseD.setDate(5, Date.valueOf(reserva.getFechaSalida()));
+            baseD.setDouble(6, reserva.getImporteTotal());
+            baseD.setBoolean(7, reserva.getEstado());
+            
+            baseD.executeUpdate();
+            baseD.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservasData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+
+    
+
 }
