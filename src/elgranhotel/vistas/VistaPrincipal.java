@@ -5,52 +5,22 @@
  */
 package elgranhotel.vistas;
 
-import com.toedter.calendar.JDateChooser;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+import javax.swing.JFrame;
 
 /**
  *
  * @author CHIDORY
  */
 public class VistaPrincipal extends javax.swing.JFrame {
-    
-    
 
     /**
-     * Creates new form ReservaVista
+     * Creates new form vistaPrincipal1
      */
     public VistaPrincipal() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
-    
-     public void difDias(JDateChooser ent, JDateChooser ffin){
-        
-         if (ent.getDate() != null && ffin.getDate() != null ) {
-             Calendar fE = ent.getCalendar();
-             Calendar fS = ffin.getCalendar();
-             int dias = -1;
-             while(fE.before(fS) || fE.equals(fS)){
-                 dias++;
-                 fE.add(Calendar.DATE, 1);
-             }
-                tfCantDias.setText(String.valueOf(dias));
-            
-         }//else{
-            // JOptionPane.showMessageDialog(null, "Selecione las fechas", "Calcular Dias", JOptionPane.ERROR_MESSAGE);
-        // }
-        
-                
-     }
-     
-     
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,226 +31,141 @@ public class VistaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        dcEntrada = new com.toedter.calendar.JDateChooser();
-        dcSalida = new com.toedter.calendar.JDateChooser();
-        jbEntrada = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        TFentrada = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jLabel6 = new javax.swing.JLabel();
-        tfCantDias = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        escritorio = new javax.swing.JDesktopPane();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        mReservas = new javax.swing.JMenu();
+        miCrearReserva = new javax.swing.JMenuItem();
+        mHabitaciones = new javax.swing.JMenu();
+        miBuscarHabitacion = new javax.swing.JMenuItem();
+        mThabitacion = new javax.swing.JMenu();
+        miCrearHabitaciones = new javax.swing.JMenuItem();
+        mHuesped = new javax.swing.JMenu();
+        miBuscarHuesped = new javax.swing.JMenuItem();
+        mInforme = new javax.swing.JMenu();
+        miInformeDni = new javax.swing.JMenuItem();
+        mSa = new javax.swing.JMenu();
+        miSalirAplicacion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setFocusable(false);
+        getContentPane().setLayout(new javax.swing.OverlayLayout(getContentPane()));
 
-        dcSalida.getDateEditor().addPropertyChangeListener(new java.beans.PropertyChangeListener(){
-            public void propertyChange(java.beans.PropertyChangeEvent evet) {
-                difDias( dcEntrada, dcSalida);
-
-            }
-        });
-
-        jbEntrada.setText("CREAR RESERVA");
-        jbEntrada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbEntradaActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("ACTUALIZAR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "NOMBRE", "DNI", "DOMICILIO", "CELULAR"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        jButton3.setText("ELIMINAR");
-
-        jButton4.setText("BUSCAR");
-
-        jLabel1.setText("Fecha Entrada");
-
-        jLabel2.setText("Fecha Salida");
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel3.setText("Cant. Personas");
-
-        jLabel4.setText("Tipo Habitacion");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SIMPLE", "DOBLE", "TRIPLE", "SUITE LUJO" }));
-
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("LIBRE");
-
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("OCUPADA");
-
-        tfCantDias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfCantDiasActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setText("Cantidad Dias");
-
-        jButton5.setText("CANCELAR");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(dcEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel5))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(dcSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(tfCantDias, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jRadioButton1)))
-                                .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jRadioButton2))
-                                .addGap(6, 6, 6)
-                                .addComponent(TFentrada, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(69, 69, 69))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)))
-                        .addComponent(jLabel6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbEntrada, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(31, 31, 31))
+        javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
+        escritorio.setLayout(escritorioLayout);
+        escritorioLayout.setHorizontalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1213, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(143, 143, 143)
-                        .addComponent(jLabel6)
-                        .addGap(8, 8, 8)
-                        .addComponent(jbEntrada)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)
-                        .addGap(43, 43, 43)
-                        .addComponent(jButton3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton5))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(tfCantDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(83, 83, 83))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(TFentrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel3))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel1)
-                                            .addComponent(dcEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel2)
-                                            .addComponent(dcSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(3, 3, 3)))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jRadioButton1)
-                                    .addComponent(jRadioButton2))
-                                .addGap(82, 82, 82)))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        escritorioLayout.setVerticalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 561, Short.MAX_VALUE)
         );
+
+        getContentPane().add(escritorio);
+
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(153, 153, 153), null, null));
+        jMenuBar1.setForeground(new java.awt.Color(101, 97, 97));
+        jMenuBar1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        mReservas.setText("Reservas");
+        mReservas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        mReservas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mReservasActionPerformed(evt);
+            }
+        });
+
+        miCrearReserva.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        miCrearReserva.setText("Crear Reserva");
+        miCrearReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miCrearReservaActionPerformed(evt);
+            }
+        });
+        mReservas.add(miCrearReserva);
+
+        jMenuBar1.add(mReservas);
+
+        mHabitaciones.setText("Habitaciones");
+        mHabitaciones.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        miBuscarHabitacion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        miBuscarHabitacion.setText("Buscar Habitacion");
+        mHabitaciones.add(miBuscarHabitacion);
+
+        jMenuBar1.add(mHabitaciones);
+
+        mThabitacion.setText("T.Habitaciones");
+        mThabitacion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        miCrearHabitaciones.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        miCrearHabitaciones.setText("Crear Habitaciones ");
+        mThabitacion.add(miCrearHabitaciones);
+
+        jMenuBar1.add(mThabitacion);
+
+        mHuesped.setText("Huesped");
+        mHuesped.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        miBuscarHuesped.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        miBuscarHuesped.setText("Buscar Huesped");
+        mHuesped.add(miBuscarHuesped);
+
+        jMenuBar1.add(mHuesped);
+
+        mInforme.setText("Informe");
+        mInforme.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        miInformeDni.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        miInformeDni.setText("Crear Informe por DNI");
+        miInformeDni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miInformeDniActionPerformed(evt);
+            }
+        });
+        mInforme.add(miInformeDni);
+
+        jMenuBar1.add(mInforme);
+
+        mSa.setText("Salir");
+        mSa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        miSalirAplicacion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        miSalirAplicacion.setText("Salir de Aplicacion");
+        miSalirAplicacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miSalirAplicacionActionPerformed(evt);
+            }
+        });
+        mSa.add(miSalirAplicacion);
+
+        jMenuBar1.add(mSa);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntradaActionPerformed
-        
-        //LocalDate fechaNueva = fechaE.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        //String fecha = fechaNueva.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        //LocalDate fechaN = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        //LocalDate fecNac = LocalDate.parse(jtFecha.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        //TFentrada.setText(fecha);
-    }//GEN-LAST:event_jbEntradaActionPerformed
-
-    private void tfCantDiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCantDiasActionPerformed
-     
-      
-    }//GEN-LAST:event_tfCantDiasActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-      
-                     
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void miInformeDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miInformeDniActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_miInformeDniActionPerformed
+
+    private void miSalirAplicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSalirAplicacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_miSalirAplicacionActionPerformed
+
+    private void miCrearReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCrearReservaActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+          VistaReservas res = new VistaReservas();
+          res.setVisible(true);
+        escritorio.add(res);
+        escritorio.moveToFront(res);
+    }//GEN-LAST:event_miCrearReservaActionPerformed
+
+    private void mReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mReservasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mReservasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -309,6 +194,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -319,26 +206,19 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TFentrada;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private com.toedter.calendar.JDateChooser dcEntrada;
-    private com.toedter.calendar.JDateChooser dcSalida;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JButton jbEntrada;
-    private javax.swing.JTextField tfCantDias;
+    private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu mHabitaciones;
+    private javax.swing.JMenu mHuesped;
+    private javax.swing.JMenu mInforme;
+    private javax.swing.JMenu mReservas;
+    private javax.swing.JMenu mSa;
+    private javax.swing.JMenu mThabitacion;
+    private javax.swing.JMenuItem miBuscarHabitacion;
+    private javax.swing.JMenuItem miBuscarHuesped;
+    private javax.swing.JMenuItem miCrearHabitaciones;
+    private javax.swing.JMenuItem miCrearReserva;
+    private javax.swing.JMenuItem miInformeDni;
+    private javax.swing.JMenuItem miSalirAplicacion;
     // End of variables declaration//GEN-END:variables
 }
