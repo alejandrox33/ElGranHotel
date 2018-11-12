@@ -1,0 +1,45 @@
+[33mcommit 499455cbd8f9d7757e90ed35b12a22485e66b854[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: alejandrox33 <kasmex777@gmail.com>
+Date:   Wed Oct 31 01:08:56 2018 -0300
+
+    se creo metodo buscarHabporTipo
+
+[33mcommit e8fed4ffc0dc7da6e7b9f43b201e6ee556481dec[m
+Author: alejandrox33 <kasmex777@gmail.com>
+Date:   Tue Oct 30 23:00:40 2018 -0300
+
+    se agrego metodo actualizar precio y
+    algunas modificaciones minimas
+
+[33mcommit 6bf1d99ea4993ddc0b2fbccf04138ab71cce669c[m[33m ([m[1;33mtag: ReservaData[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: alejandrox33 <kasmex777@gmail.com>
+Date:   Sun Oct 28 23:44:51 2018 -0300
+
+    se agrego el metodo obtener reservas por huesped
+    se agrego 3 metodo buscar
+
+[33mcommit 33109ee8dc512ae38fc7907058ca7c2b409bd865[m
+Author: alejandrox33 <kasmex777@gmail.com>
+Date:   Sun Oct 28 21:16:14 2018 -0300
+
+    primer commit en esta rama
+
+[33mcommit ddb1496088dd2f8418e8d49e17aa4ee947c30574[m
+Author: alejandrox33 <kasmex777@gmail.com>
+Date:   Sun Oct 28 20:10:39 2018 -0300
+
+    creacion de metodos faltantes(buscar,actualizar,eliminar ,obtener)
+    en clases data estan probados guardan en base de datos.
+    Falta agregar metodos en reserva
+
+[33mcommit 247dc48c6dc1b058663f658c1053c13f98fae61b[m[33m ([m[1;33mtag: clasesData[m[33m)[m
+Author: alejandrox33 <kasmex777@gmail.com>
+Date:   Thu Oct 11 23:32:09 2018 -0300
+
+    agregue todas las clases datas clase alumno data esta mas completa las demas tienen solo metodo guardar y tambien agregue la clase conexion a la base de datos
+
+[33mcommit bac66f7869d5b75503b6fb1f4cc365f2fa5161cc[m
+Author: alejandrox33 <kasmex777@gmail.com>
+Date:   Thu Oct 4 01:47:26 2018 -0300
+
+    creacion de las clases falta revisar clase Habitacion, paquete de vistas creado con clase Principal sin modificar solo creada

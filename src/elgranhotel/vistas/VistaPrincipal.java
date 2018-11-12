@@ -18,8 +18,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
      */
     public VistaPrincipal() {
         initComponents();
-        this.setLocationRelativeTo(null);
-        //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //this.setLocationRelativeTo(null);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
     }
 
     /**
@@ -37,14 +38,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
         miCrearReserva = new javax.swing.JMenuItem();
         mHabitaciones = new javax.swing.JMenu();
         miBuscarHabitacion = new javax.swing.JMenuItem();
-        mThabitacion = new javax.swing.JMenu();
-        miCrearHabitaciones = new javax.swing.JMenuItem();
-        mHuesped = new javax.swing.JMenu();
-        miBuscarHuesped = new javax.swing.JMenuItem();
         mInforme = new javax.swing.JMenu();
         miInformeDni = new javax.swing.JMenuItem();
-        mSa = new javax.swing.JMenu();
-        miSalirAplicacion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusable(false);
@@ -54,7 +49,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1213, Short.MAX_VALUE)
+            .addGap(0, 1274, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,28 +85,15 @@ public class VistaPrincipal extends javax.swing.JFrame {
         mHabitaciones.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         miBuscarHabitacion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        miBuscarHabitacion.setText("Buscar Habitacion");
+        miBuscarHabitacion.setText("Crear Habitaciones");
+        miBuscarHabitacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miBuscarHabitacionActionPerformed(evt);
+            }
+        });
         mHabitaciones.add(miBuscarHabitacion);
 
         jMenuBar1.add(mHabitaciones);
-
-        mThabitacion.setText("T.Habitaciones");
-        mThabitacion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        miCrearHabitaciones.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        miCrearHabitaciones.setText("Crear Habitaciones ");
-        mThabitacion.add(miCrearHabitaciones);
-
-        jMenuBar1.add(mThabitacion);
-
-        mHuesped.setText("Huesped");
-        mHuesped.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        miBuscarHuesped.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        miBuscarHuesped.setText("Buscar Huesped");
-        mHuesped.add(miBuscarHuesped);
-
-        jMenuBar1.add(mHuesped);
 
         mInforme.setText("Informe");
         mInforme.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -127,32 +109,19 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(mInforme);
 
-        mSa.setText("Salir");
-        mSa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-
-        miSalirAplicacion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        miSalirAplicacion.setText("Salir de Aplicacion");
-        miSalirAplicacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miSalirAplicacionActionPerformed(evt);
-            }
-        });
-        mSa.add(miSalirAplicacion);
-
-        jMenuBar1.add(mSa);
-
         setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void miInformeDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miInformeDniActionPerformed
-        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        VistaInforme vi = new VistaInforme();
+        vi.setVisible(true);
+        escritorio.add(vi);
+        escritorio.moveToFront(vi);
     }//GEN-LAST:event_miInformeDniActionPerformed
-
-    private void miSalirAplicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSalirAplicacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_miSalirAplicacionActionPerformed
 
     private void miCrearReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCrearReservaActionPerformed
         escritorio.removeAll();
@@ -166,6 +135,15 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void mReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mReservasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_mReservasActionPerformed
+
+    private void miBuscarHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miBuscarHabitacionActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        VistaCrearHabitaciones hab = new VistaCrearHabitaciones();
+        hab.setVisible(true);
+        escritorio.add(hab);
+        escritorio.moveToFront(hab);
+    }//GEN-LAST:event_miBuscarHabitacionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,16 +187,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu mHabitaciones;
-    private javax.swing.JMenu mHuesped;
     private javax.swing.JMenu mInforme;
     private javax.swing.JMenu mReservas;
-    private javax.swing.JMenu mSa;
-    private javax.swing.JMenu mThabitacion;
     private javax.swing.JMenuItem miBuscarHabitacion;
-    private javax.swing.JMenuItem miBuscarHuesped;
-    private javax.swing.JMenuItem miCrearHabitaciones;
     private javax.swing.JMenuItem miCrearReserva;
     private javax.swing.JMenuItem miInformeDni;
-    private javax.swing.JMenuItem miSalirAplicacion;
     // End of variables declaration//GEN-END:variables
 }

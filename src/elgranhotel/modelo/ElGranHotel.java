@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,19 +34,21 @@ public class ElGranHotel {
             LocalDate fS = LocalDate.parse(fechaS, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             
             Conexion conexion = new Conexion("jdbc:mysql://localhost/elgranhotel", "root", "");
+            
+            
            
-            HuespedData heD = new HuespedData(conexion);
-            Huesped hues = new Huesped(1,"eitan", 888888, "379", "kasmex777@gmail.com", 15600733);
+            //HuespedData heD = new HuespedData(conexion);
+            //Huesped hues = new Huesped(4,"maximo camargo", 77777888, "venezuela 379", "kasmex777@gmail.com", 15600733);
             //heD.borrarHuesped(4);
-            heD.obtenerHuesped().forEach(huesped -> {
+            /*  heD.obtenerHuesped().forEach(huesped -> {
             System.out.println("Nombre: " + huesped.getNombre());
             });
-           
+            
             
             for(Huesped h : heD.obtenerHuesped()){
-                System.out.println("Nombre: " + h.getNombre()+", " + h.getDni());
+            System.out.println("Nombre: " + h.getNombre()+", " + h.getDni());
             }
-            
+            */
             
             //Huesped h = heD.buscarHuesped(hues.getId_huesped());
                       
@@ -56,21 +59,36 @@ public class ElGranHotel {
             //tipo.borrarThabitacion(1);*/
             
             //System.out.println(""+a);
-            HabitacionData habD = new HabitacionData(conexion);
+           HabitacionData habD = new HabitacionData(conexion);
             //Habitacion hab = new Habitacion(1, a , true);
             //habD.actualizarEstadoHabitacion(7,8 , false);
             //habD.guardarHabitacion(hab);
-           // Habitacion h1 = habD.buscarHabitacion(hab.getId_habitacion());
+           //Habitacion h1 = habD.buscarHabitacion(hab.getId_habitacion());
            
-              for (Habitacion habi : habD.buscarHabporTipo("doble", 4, true)) {
-                  System.out.println("la"+habi.getThabitacion().getTipo()+" "+habi.getThabitacion().getCantPersonas()+" "+habi.getEstado());
-            }
+           for (Habitacion habi : habD.obtenerHabiporTipo(4, true)) {
+           System.out.println("la "+habi.getThabitacion().getTipo()+" "+habi.getThabitacion().getCantPersonas()+" "+habi.getEstado());
+           }
  
+            habD.crearHabitacionPorTipo(201, 210, "Triple", 2525, 4, 4, "suit", 125, true);
+            
+            //JOptionPane.showMessageDialog(null,"String");
+            int simple = habD.contadorHabitacionPorTipo("estandar simple");
+            int doble = habD.contadorHabitacionPorTipo("estandar doble");
+            int triple = habD.contadorHabitacionPorTipo("Triple");
+            
+            System.out.println(simple);
+            System.out.println(doble);
+            System.out.println(triple);
             
             
             
             
-            //ReservasData resD = new ReservasData(conexion);
+           /* ReservasData resD = new ReservasData(conexion);
+           Reservas res = resD.finReserava(hues);
+           System.out.println("la reserva es: "+res.getId());
+           System.out.println("la id_habitacion es: "+res.getHabitaciones().getId_habitacion());
+           System.out.println("la id_huesped es: "+res.getHuesped().getId_huesped());
+           System.out.println("la id_thabitacion es: "+res.getHabitaciones().getThabitacion().getId_thabitacion());*/
             //Reservas res = new Reservas(h, h1, 4, fE, fS, 50,true);
             //resD.guardarReservas(res);
             //System.out.println("el id es "+h1+""+h);
@@ -89,7 +107,7 @@ public class ElGranHotel {
             
             //Reservas reserva1 = new Reservas(persona1, habi, 2, fEntrada, fSalida,250.0);
             
-            //tipo.forEach(action -> {System.out.println(habi.getThabitacion());} );
+            //tipo.forEach(action -> {System.out.println(habi.getThabitacion());});
             
             
             //for(int i = 0;i < tipo.size();i++){

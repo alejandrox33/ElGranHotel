@@ -13,8 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 /**
  *
  * @author alejandrox33 grupo 6
@@ -277,16 +275,13 @@ public class ReservasData {
 
     }
 
-    
 //***************************ACTUALIZAR RESERVA*********************************
-    
-    
-    public void actualizarReserva(Reservas reserva){
-        
+    public void actualizarReserva(Reservas reserva) {
+
         try {
             String sql = "UPDATE FROM reserva SET huesped ?, habitaciones =?, cantDias =?, fechaEntrada =?, fechaSalida =?, importeTotal =?, estado =? "
-                       + "WHERE id =? ;";
-            
+                    + "WHERE id =? ;";
+
             PreparedStatement baseD = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             baseD.setInt(1, reserva.getHuesped().getId_huesped());
             baseD.setInt(2, reserva.getHabitaciones().getId_habitacion());
@@ -295,16 +290,59 @@ public class ReservasData {
             baseD.setDate(5, Date.valueOf(reserva.getFechaSalida()));
             baseD.setDouble(6, reserva.getImporteTotal());
             baseD.setBoolean(7, reserva.getEstado());
-            
+            baseD.setInt(8, reserva.getId());
+
             baseD.executeUpdate();
             baseD.close();
-            
+
         } catch (SQLException ex) {
-            Logger.getLogger(ReservasData.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error al actualizar una Reserva: " + ex.getMessage());
         }
     }
-
-
     
+    //********************OBTENER RESERVAS**************************************
+    
+    public List<Reservas> obtenerReservas() {
+        List<Reservas> Reservadas = new ArrayList<>();
+
+        try {
+
+            String sql = "SELECT * FROM Reservas r, tipohabitacion th WHERE r.id = th.id_thabitacion ;";
+
+            PreparedStatement baseD = connection.prepareStatement(sql);
+            
+            ResultSet resultado = baseD.executeQuery();
+            Reservas res;
+
+            while (resultado.next()) {
+                res = new Reservas();
+                res.setId(resultado.getInt("id"));
+
+                Huesped hu = buscarHues(resultado.getInt("id_huesped"));
+                res.setHuesped(hu);
+
+                Habitacion hab = buscarHab(resultado.getInt("id_habitacion"));
+                res.setHabitaciones(hab);
+
+                TipoHabitacion t = buscaThab(resultado.getInt("id_thabitacion"));
+                hab.setThabitacion(t);
+
+                res.setCantDias(resultado.getInt("cantDias"));
+                res.setFechaEntrada(resultado.getDate("fechaEntrada").toLocalDate());
+                res.setFechaSalida(resultado.getDate("fechaSalida").toLocalDate());
+                res.setImporteTotal(resultado.getDouble("importeTotal"));
+                res.setEstado(resultado.getBoolean("estado"));
+
+                Reservadas.add(res);
+
+            }
+            baseD.close();
+
+        } catch (SQLException ex) {
+            System.out.println("Error al obtener las Reservas por Huesped: " + ex.getMessage());
+        }
+
+        return Reservadas;
+    }
 
 }

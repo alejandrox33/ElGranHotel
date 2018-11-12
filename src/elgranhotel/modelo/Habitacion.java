@@ -15,36 +15,38 @@ package elgranhotel.modelo;
  */
 public class Habitacion {
     private int id_habitacion = -1 ;
-    private int piso;
     private TipoHabitacion thabitacion;
     private boolean estado;
+    private double monto;
 
-    public Habitacion(int id_habitacion, int piso, TipoHabitacion thabitacion, boolean estado) {
+    public Habitacion(int id_habitacion, TipoHabitacion thabitacion, boolean estado) {
         this.id_habitacion = id_habitacion;
-        this.piso = piso;
         this.thabitacion = thabitacion;
         this.estado = estado;
     }
 
-    public Habitacion(int piso, TipoHabitacion thabitacion, boolean estado) {
-        this.piso = piso;
+    public Habitacion( TipoHabitacion thabitacion, boolean estado) {
         this.thabitacion = thabitacion;
         this.estado = estado;
     }
 
-    public Habitacion(TipoHabitacion thabitacion, boolean estado) {
-        this.thabitacion = thabitacion;
-        this.estado = estado;
-    }
-    
-       
     public Habitacion() {
         
     }
     
-    public double calcularMonto(int cantDias){          // Metodo para calcular el monto
-        return thabitacion.getPrecioNoche() * cantDias;
+    public void calcularMonto(double precio,int cantDias){          // Metodo para calcular el monto
+        monto = precio * cantDias;
     }
+
+    public double getMonto() {
+        return monto;
+    }
+
+    public void setMonto(double monto) {
+        this.monto = monto;
+    }
+    
+    
 
     public int getId_habitacion() {
         return id_habitacion;
@@ -52,14 +54,6 @@ public class Habitacion {
 
     public void setId_habitacion(int id_habitacion) {
         this.id_habitacion = id_habitacion;
-    }
-
-    public int getPiso() {
-        return piso;
-    }
-
-    public void setPiso(int piso) {
-        this.piso = piso;
     }
 
     public TipoHabitacion getThabitacion() {
