@@ -6,6 +6,7 @@
 package elgranhotel.vistas;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,12 +35,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        mReservas = new javax.swing.JMenu();
-        miCrearReserva = new javax.swing.JMenuItem();
         mHabitaciones = new javax.swing.JMenu();
         miBuscarHabitacion = new javax.swing.JMenuItem();
         mInforme = new javax.swing.JMenu();
         miInformeDni = new javax.swing.JMenuItem();
+        mReservas = new javax.swing.JMenu();
+        miCrearReserva = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusable(false);
@@ -61,25 +62,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenuBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(153, 153, 153), null, null));
         jMenuBar1.setForeground(new java.awt.Color(101, 97, 97));
         jMenuBar1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-
-        mReservas.setText("Reservas");
-        mReservas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        mReservas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mReservasActionPerformed(evt);
-            }
-        });
-
-        miCrearReserva.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        miCrearReserva.setText("Crear Reserva");
-        miCrearReserva.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miCrearReservaActionPerformed(evt);
-            }
-        });
-        mReservas.add(miCrearReserva);
-
-        jMenuBar1.add(mReservas);
 
         mHabitaciones.setText("Habitaciones");
         mHabitaciones.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -109,27 +91,54 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(mInforme);
 
+        mReservas.setText("Reservas");
+        mReservas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        mReservas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mReservasActionPerformed(evt);
+            }
+        });
+
+        miCrearReserva.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        miCrearReserva.setText("Crear Reserva");
+        miCrearReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miCrearReservaActionPerformed(evt);
+            }
+        });
+        mReservas.add(miCrearReserva);
+
+        jMenuBar1.add(mReservas);
+
         setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void miInformeDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miInformeDniActionPerformed
-        escritorio.removeAll();
-        escritorio.repaint();
-        VistaInforme vi = new VistaInforme();
-        vi.setVisible(true);
-        escritorio.add(vi);
-        escritorio.moveToFront(vi);
+        try {
+            escritorio.removeAll();
+            escritorio.repaint();
+            VistaInforme vi = new VistaInforme();
+            vi.setVisible(true);
+            escritorio.add(vi);
+            escritorio.moveToFront(vi);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se pudo establecer la conexion con la base de datos por favor verifique si xammpp esta habierto "+e.getMessage() );
+        }
     }//GEN-LAST:event_miInformeDniActionPerformed
 
     private void miCrearReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCrearReservaActionPerformed
-        escritorio.removeAll();
-        escritorio.repaint();
-          VistaReservas res = new VistaReservas();
-          res.setVisible(true);
-        escritorio.add(res);
-        escritorio.moveToFront(res);
+        try {
+            escritorio.removeAll();
+            escritorio.repaint();
+            VistaReservas res = new VistaReservas();
+            res.setVisible(true);
+            escritorio.add(res);
+            escritorio.moveToFront(res);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se pudo establecer la conexion con la base de datos por favor verifique si xammpp esta habierto "+e.getMessage() );
+        }
     }//GEN-LAST:event_miCrearReservaActionPerformed
 
     private void mReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mReservasActionPerformed
@@ -137,12 +146,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_mReservasActionPerformed
 
     private void miBuscarHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miBuscarHabitacionActionPerformed
-        escritorio.removeAll();
-        escritorio.repaint();
-        VistaCrearHabitaciones hab = new VistaCrearHabitaciones();
-        hab.setVisible(true);
-        escritorio.add(hab);
-        escritorio.moveToFront(hab);
+        try {
+            escritorio.removeAll();
+            escritorio.repaint();
+            VistaCrearHabitaciones hab = new VistaCrearHabitaciones();
+            hab.setVisible(true);
+            escritorio.add(hab);
+            escritorio.moveToFront(hab);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se pudo establecer la conexion con la base de datos por favor verifique si xammpp esta habierto "+e.getMessage() );
+        }
     }//GEN-LAST:event_miBuscarHabitacionActionPerformed
 
     /**

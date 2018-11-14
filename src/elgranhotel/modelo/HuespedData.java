@@ -94,13 +94,44 @@ public class HuespedData {
         return huesped;
     }
 
-    //********************METODO OBTENER UN HUESPED******************************
-    public List<Huesped> obtenerHuesped() {
+    //********************OBTENER Huesped segun estado de la reserva************
+    public List<Huesped> obtenerHuespedAcordeEstadoReserva() {
         List<Huesped> huespeds = new ArrayList<>();
 
         try {
 
-            String sql = "SELECT id_huesped, nombre, dni, domicilio, correo, celular FROM huesped; ";
+            String sql = "SELECT * FROM huesped h, Reservas r WHERE h.id_huesped = r.id AND estado = 1; ";
+            PreparedStatement baseD = connection.prepareCall(sql);
+            ResultSet resultado = baseD.executeQuery();
+            Huesped huesped;
+            while (resultado.next()) {
+                huesped = new Huesped();
+                huesped.setId(resultado.getInt("id_huesped"));
+                huesped.setNombre(resultado.getString("nombre"));
+                huesped.setDni(resultado.getInt("dni"));
+                huesped.setDomicilio(resultado.getString("domicilio"));
+                huesped.setCorreo(resultado.getString("correo"));
+                huesped.setCelular( resultado.getLong("celular"));
+
+                huespeds.add(huesped);
+            }
+            baseD.close();
+
+        } catch (SQLException ex) {
+            System.out.println("Error al obtener los huespedes: " + ex.getMessage());
+        }
+
+        return huespeds;
+    }
+    
+    //************************OBTENER HUESPED***********************************
+    
+     public List<Huesped> obtenerHuesped() {
+        List<Huesped> huespeds = new ArrayList<>();
+
+        try {
+
+            String sql = "SELECT * FROM huesped ; ";
             PreparedStatement baseD = connection.prepareCall(sql);
             ResultSet resultado = baseD.executeQuery();
             Huesped huesped;

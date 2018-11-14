@@ -66,7 +66,7 @@ public class VistaReservas extends javax.swing.JInternalFrame {
            
             
             resData = new ReservasData(conexion);
-            listaReservas = resData.obtenerReservas();
+            
             
             
             
@@ -201,7 +201,9 @@ public class VistaReservas extends javax.swing.JInternalFrame {
         rbOcupada = new javax.swing.JRadioButton();
         rbLibre = new javax.swing.JRadioButton();
         rbHuesped = new javax.swing.JRadioButton();
-        rbReservas = new javax.swing.JRadioButton();
+        rbReservasInactivas = new javax.swing.JRadioButton();
+        bFinReserva = new javax.swing.JButton();
+        rbReservasActivas = new javax.swing.JRadioButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -253,7 +255,7 @@ public class VistaReservas extends javax.swing.JInternalFrame {
 
         ttabla.setBackground(new java.awt.Color(0, 102, 153));
         ttabla.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        ttabla.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
+        ttabla.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         ttabla.setForeground(new java.awt.Color(102, 0, 51));
         ttabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -312,28 +314,28 @@ public class VistaReservas extends javax.swing.JInternalFrame {
         tfNombre.setForeground(new java.awt.Color(255, 255, 255));
         tfNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfNombre.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel4.add(tfNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 270, 30));
+        jPanel4.add(tfNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 330, 30));
 
         tfDomicilio.setBackground(new java.awt.Color(0, 102, 153));
         tfDomicilio.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         tfDomicilio.setForeground(new java.awt.Color(255, 255, 255));
         tfDomicilio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDomicilio.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel4.add(tfDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 270, 30));
+        jPanel4.add(tfDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 330, 30));
 
         tfCorreo.setBackground(new java.awt.Color(0, 102, 153));
         tfCorreo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         tfCorreo.setForeground(new java.awt.Color(255, 255, 255));
         tfCorreo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfCorreo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel4.add(tfCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 270, 30));
+        jPanel4.add(tfCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 330, 30));
 
         tfCelular.setBackground(new java.awt.Color(0, 102, 153));
         tfCelular.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         tfCelular.setForeground(new java.awt.Color(255, 255, 255));
         tfCelular.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfCelular.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel4.add(tfCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 270, 30));
+        jPanel4.add(tfCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 330, 30));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(102, 0, 51));
@@ -345,7 +347,7 @@ public class VistaReservas extends javax.swing.JInternalFrame {
         tfDni.setForeground(new java.awt.Color(255, 255, 255));
         tfDni.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDni.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel4.add(tfDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 270, 30));
+        jPanel4.add(tfDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 330, 30));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(102, 0, 51));
@@ -473,7 +475,7 @@ public class VistaReservas extends javax.swing.JInternalFrame {
                 b4ActionPerformed(evt);
             }
         });
-        jPanel4.add(b4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 520, -1));
+        jPanel4.add(b4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 630, -1));
 
         b5.setBackground(new java.awt.Color(102, 0, 51));
         b5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -483,7 +485,7 @@ public class VistaReservas extends javax.swing.JInternalFrame {
                 b5ActionPerformed(evt);
             }
         });
-        jPanel4.add(b5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 580, -1));
+        jPanel4.add(b5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 510, -1));
 
         b6.setBackground(new java.awt.Color(102, 0, 51));
         b6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -493,7 +495,7 @@ public class VistaReservas extends javax.swing.JInternalFrame {
                 b6ActionPerformed(evt);
             }
         });
-        jPanel4.add(b6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 630, -1));
+        jPanel4.add(b6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 570, -1));
 
         bCrearReserva1.setBackground(new java.awt.Color(102, 0, 51));
         bCrearReserva1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -517,7 +519,7 @@ public class VistaReservas extends javax.swing.JInternalFrame {
                 rbActivaActionPerformed(evt);
             }
         });
-        jPanel4.add(rbActiva, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 390, -1, -1));
+        jPanel4.add(rbActiva, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 400, -1, -1));
 
         rbInactiva.setBackground(new java.awt.Color(0, 102, 153));
         buttonGroup2.add(rbInactiva);
@@ -529,7 +531,7 @@ public class VistaReservas extends javax.swing.JInternalFrame {
                 rbInactivaActionPerformed(evt);
             }
         });
-        jPanel4.add(rbInactiva, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 390, -1, -1));
+        jPanel4.add(rbInactiva, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 400, -1, -1));
 
         bBuscarx.setBackground(new java.awt.Color(102, 0, 51));
         bBuscarx.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -553,7 +555,7 @@ public class VistaReservas extends javax.swing.JInternalFrame {
                 rbOcupadaActionPerformed(evt);
             }
         });
-        jPanel4.add(rbOcupada, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 180, -1, -1));
+        jPanel4.add(rbOcupada, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 160, -1, -1));
 
         rbLibre.setBackground(new java.awt.Color(0, 102, 153));
         buttonGroup1.add(rbLibre);
@@ -565,33 +567,57 @@ public class VistaReservas extends javax.swing.JInternalFrame {
                 rbLibreActionPerformed(evt);
             }
         });
-        jPanel4.add(rbLibre, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 120, 90, -1));
+        jPanel4.add(rbLibre, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 120, 90, -1));
 
         rbHuesped.setBackground(new java.awt.Color(0, 102, 153));
         buttonGroup1.add(rbHuesped);
         rbHuesped.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         rbHuesped.setForeground(new java.awt.Color(102, 0, 51));
-        rbHuesped.setText("Huesped");
+        rbHuesped.setText("Huesped Estado Reserva");
         rbHuesped.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbHuespedActionPerformed(evt);
             }
         });
-        jPanel4.add(rbHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 230, -1, 20));
+        jPanel4.add(rbHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 200, -1, 20));
 
-        rbReservas.setBackground(new java.awt.Color(0, 102, 153));
-        buttonGroup1.add(rbReservas);
-        rbReservas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        rbReservas.setForeground(new java.awt.Color(102, 0, 51));
-        rbReservas.setText("Reservas");
-        rbReservas.addActionListener(new java.awt.event.ActionListener() {
+        rbReservasInactivas.setBackground(new java.awt.Color(0, 102, 153));
+        buttonGroup1.add(rbReservasInactivas);
+        rbReservasInactivas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        rbReservasInactivas.setForeground(new java.awt.Color(102, 0, 51));
+        rbReservasInactivas.setText("Reservas Inactiva");
+        rbReservasInactivas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbReservasActionPerformed(evt);
+                rbReservasInactivasActionPerformed(evt);
             }
         });
-        jPanel4.add(rbReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 280, -1, 20));
+        jPanel4.add(rbReservasInactivas, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 280, -1, 20));
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1340, 700));
+        bFinReserva.setBackground(new java.awt.Color(102, 0, 51));
+        bFinReserva.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        bFinReserva.setForeground(new java.awt.Color(255, 255, 255));
+        bFinReserva.setText("Fin Reserva");
+        bFinReserva.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        bFinReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bFinReservaActionPerformed(evt);
+            }
+        });
+        jPanel4.add(bFinReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 450, 30));
+
+        rbReservasActivas.setBackground(new java.awt.Color(0, 102, 153));
+        buttonGroup1.add(rbReservasActivas);
+        rbReservasActivas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        rbReservasActivas.setForeground(new java.awt.Color(102, 0, 51));
+        rbReservasActivas.setText("Reservas Activa");
+        rbReservasActivas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbReservasActivasActionPerformed(evt);
+            }
+        });
+        jPanel4.add(rbReservasActivas, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 240, -1, 20));
+
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1350, 700));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -707,7 +733,7 @@ public class VistaReservas extends javax.swing.JInternalFrame {
                 resData.guardarReservas(reserva);
                 habitacionData.actualizarEstadoHabitacion(idhab, idthab, true);
 
-                JOptionPane.showMessageDialog(null, "La Reserva se Guardo Exitosamente!!!");
+                JOptionPane.showMessageDialog(null, "La Reserva Nº "+reserva.getId()+" donde aloja el Huesped llamado: "+huesped.getNombre()+" se Guardo Exitosamente!!!");
 
             }
             tfNombre.setText("");
@@ -715,7 +741,6 @@ public class VistaReservas extends javax.swing.JInternalFrame {
             tfDomicilio.setText("");
             tfCorreo.setText("");
             tfCelular.setText("");
-            tfCantDias.setText("");
             tfMontoEstadia.setText("");
 
         }
@@ -749,7 +774,7 @@ public class VistaReservas extends javax.swing.JInternalFrame {
 
         }else if (rbHuesped.isSelected()) {
             borraFilasTabla();
-            listaHuesped = huesData.obtenerHuesped();
+            listaHuesped = huesData.obtenerHuespedAcordeEstadoReserva();
 
             for (Huesped hues : listaHuesped) {
                 modelo.addRow(new Object[]{hues.getId_huesped(), hues.getNombre(), hues.getDni(),
@@ -757,17 +782,28 @@ public class VistaReservas extends javax.swing.JInternalFrame {
                 });
 
             }
-        } else if (rbReservas.isSelected()) {
+        } else if (rbReservasActivas.isSelected()) {
             borraFilasTabla();
-            listaReservas = resData.obtenerReservas();
+            listaReservas = resData.obtenerReservas(true);
 
             for (Reservas res : listaReservas) {
-                modelo.addRow(new Object[]{res.getId(), res.getHuesped().getId_huesped(), res.getHabitaciones().getId_habitacion(), res.getCantDias(),
+                modelo.addRow(new Object[]{res.getId(), res.getHuesped().getId_huesped()+" - "+ res.getHuesped().getNombre(),"Piso - "+ res.getHabitaciones().getId_habitacion(), res.getCantDias(),
                     res.getFechaEntrada(), res.getFechaSalida(),res.getImporteTotal(), res.getEstado()
                 });
 
             }
 
+        }else if(rbReservasInactivas.isSelected()){
+             borraFilasTabla();
+            listaReservas = resData.obtenerReservas(false);
+
+            for (Reservas res : listaReservas) {
+                modelo.addRow(new Object[]{res.getId(), res.getHuesped().getId_huesped()+" - "+ res.getHuesped().getNombre(), "Piso - "+res.getHabitaciones().getId_habitacion(), res.getCantDias(),
+                    res.getFechaEntrada(), res.getFechaSalida(),res.getImporteTotal(), res.getEstado()
+                });
+
+            }
+        
         }else{
             JOptionPane.showMessageDialog(null, "Seleccione una opcion de busqueda");
         }
@@ -804,7 +840,7 @@ public class VistaReservas extends javax.swing.JInternalFrame {
         ttabla.setModel(modelo);
     }//GEN-LAST:event_rbHuespedActionPerformed
 
-    private void rbReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbReservasActionPerformed
+    private void rbReservasInactivasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbReservasInactivasActionPerformed
         modelo.setColumnCount(0);
 
         ArrayList<Object> columnas = new ArrayList<Object>();
@@ -817,15 +853,58 @@ public class VistaReservas extends javax.swing.JInternalFrame {
         columnas.add("Importe Total");
         columnas.add("Estado");
         
-       //java.awt.Color.gray color = Color.rgb(201, 0, 51, 255);
+       
 
         for (Object it : columnas) {
 
             modelo.addColumn(it);
         }
         ttabla.setModel(modelo);
-        ttabla.setGridColor(java.awt.Color.RED);
-    }//GEN-LAST:event_rbReservasActionPerformed
+       
+    }//GEN-LAST:event_rbReservasInactivasActionPerformed
+
+    private void bFinReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bFinReservaActionPerformed
+        if (rbHuesped.isSelected()) {
+            int filaSeleccionada = ttabla.getSelectedRow();
+            System.out.println("Fila seleccionada " + filaSeleccionada);
+            
+            if (filaSeleccionada != -1) {
+                int idhues = Integer.parseInt(modelo.getValueAt(filaSeleccionada, 0).toString());
+               
+                
+                Huesped hues = new Huesped();
+                hues.setId(idhues);
+                
+                resData.finReserava(hues,false);
+                
+                JOptionPane.showMessageDialog(null, "La reserva se paso a Inactiva y la Habitacion se paso a Libre");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione la opcion Huesped y una celda de la tabla para dar fin a la reserva");
+        }
+    }//GEN-LAST:event_bFinReservaActionPerformed
+
+    private void rbReservasActivasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbReservasActivasActionPerformed
+        modelo.setColumnCount(0);
+
+        ArrayList<Object> columnas = new ArrayList<Object>();
+        columnas.add("ID ");
+        columnas.add("ID Huesped ");
+        columnas.add("ID Habitacion ");
+        columnas.add("Cant. Dias ");
+        columnas.add("Fecha Entrada ");
+        columnas.add("Fecha Salida");
+        columnas.add("Importe Total");
+        columnas.add("Estado");
+        
+       
+
+        for (Object it : columnas) {
+
+            modelo.addColumn(it);
+        }
+        ttabla.setModel(modelo);
+    }//GEN-LAST:event_rbReservasActivasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -837,6 +916,7 @@ public class VistaReservas extends javax.swing.JInternalFrame {
     private javax.swing.JButton b6;
     private javax.swing.JButton bBuscarx;
     private javax.swing.JButton bCrearReserva1;
+    private javax.swing.JButton bFinReserva;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private com.toedter.calendar.JDateChooser dcEntrada;
@@ -869,7 +949,8 @@ public class VistaReservas extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton rbInactiva;
     private javax.swing.JRadioButton rbLibre;
     private javax.swing.JRadioButton rbOcupada;
-    private javax.swing.JRadioButton rbReservas;
+    private javax.swing.JRadioButton rbReservasActivas;
+    private javax.swing.JRadioButton rbReservasInactivas;
     private javax.swing.JTextField tfCantDias;
     private javax.swing.JTextField tfCantPersonas;
     private javax.swing.JTextField tfCelular;

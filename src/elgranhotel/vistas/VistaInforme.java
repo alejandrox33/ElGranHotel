@@ -42,11 +42,11 @@ public class VistaInforme extends javax.swing.JInternalFrame {
             listaHuesped = huesD.obtenerHuesped();
             
             
-            tablaCo();
+            //tablaCo();
             
             borrarFilas();
             
-            cargaTabla();
+            //cargaTabla();
             
         } catch (ClassNotFoundException ex) {
              System.out.println("Error al conectar con la base de datos..." + ex.getMessage());

@@ -421,7 +421,7 @@ public class VistaCrearHabitaciones extends javax.swing.JInternalFrame {
                 rbLibreActionPerformed(evt);
             }
         });
-        jPanel2.add(rbLibre, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 110, -1, -1));
+        jPanel2.add(rbLibre, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 110, -1, -1));
 
         lSl.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lSl.setForeground(new java.awt.Color(255, 255, 255));

@@ -217,7 +217,7 @@ public class ReservasData {
     }
 
 //*****************************FIN RESERVA**************************************
-    public Reservas finReserava(Huesped huesped) {
+    public Reservas finReserava(Huesped huesped, boolean act) {
 
         Reservas reserva = null;
 
@@ -225,10 +225,11 @@ public class ReservasData {
 
             reserva = buscarReservasporhuesped(huesped.getId_huesped());
 
-            String sql = "UPDATE reservas SET estado =0 WHERE id_huesped =?;";
+            String sql = "UPDATE reservas SET estado =? WHERE id_huesped =?;";
 
             PreparedStatement baseD = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            baseD.setInt(1, reserva.getHuesped().getId_huesped());
+            baseD.setBoolean(1, act);
+            baseD.setInt(2, reserva.getHuesped().getId_huesped());
 
             baseD.executeUpdate();
 
@@ -240,10 +241,11 @@ public class ReservasData {
 
         try {
 
-            String sql = "UPDATE habitacion SET estado =0 WHERE id_habitacion =?;";
+            String sql = "UPDATE habitacion SET estado =? WHERE id_habitacion =?;";
 
             PreparedStatement baseD = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            baseD.setInt(1, reserva.getHabitaciones().getId_habitacion());
+            baseD.setBoolean(1, act);
+            baseD.setInt(2, reserva.getHabitaciones().getId_habitacion());
 
             baseD.executeUpdate();
 
@@ -302,15 +304,15 @@ public class ReservasData {
     
     //********************OBTENER RESERVAS**************************************
     
-    public List<Reservas> obtenerReservas() {
+    public List<Reservas> obtenerReservas(boolean estado) {
         List<Reservas> Reservadas = new ArrayList<>();
 
         try {
 
-            String sql = "SELECT * FROM Reservas r, tipohabitacion th WHERE r.id = th.id_thabitacion ;";
+            String sql = "SELECT * FROM Reservas r, tipohabitacion th WHERE r.id = th.id_thabitacion AND estado =? ;";
 
             PreparedStatement baseD = connection.prepareStatement(sql);
-            
+            baseD.setBoolean(1, estado);
             ResultSet resultado = baseD.executeQuery();
             Reservas res;
 
