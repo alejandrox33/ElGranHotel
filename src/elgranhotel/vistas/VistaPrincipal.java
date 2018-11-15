@@ -35,12 +35,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
+        mReservas = new javax.swing.JMenu();
+        miCrearReserva = new javax.swing.JMenuItem();
         mHabitaciones = new javax.swing.JMenu();
         miBuscarHabitacion = new javax.swing.JMenuItem();
         mInforme = new javax.swing.JMenu();
         miInformeDni = new javax.swing.JMenuItem();
-        mReservas = new javax.swing.JMenu();
-        miCrearReserva = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusable(false);
@@ -54,7 +54,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 561, Short.MAX_VALUE)
+            .addGap(0, 565, Short.MAX_VALUE)
         );
 
         getContentPane().add(escritorio);
@@ -62,6 +62,25 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenuBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(153, 153, 153), null, null));
         jMenuBar1.setForeground(new java.awt.Color(101, 97, 97));
         jMenuBar1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        mReservas.setText("Reservas");
+        mReservas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        mReservas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mReservasActionPerformed(evt);
+            }
+        });
+
+        miCrearReserva.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        miCrearReserva.setText("Crear Reserva");
+        miCrearReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miCrearReservaActionPerformed(evt);
+            }
+        });
+        mReservas.add(miCrearReserva);
+
+        jMenuBar1.add(mReservas);
 
         mHabitaciones.setText("Habitaciones");
         mHabitaciones.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -90,25 +109,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         mInforme.add(miInformeDni);
 
         jMenuBar1.add(mInforme);
-
-        mReservas.setText("Reservas");
-        mReservas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        mReservas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mReservasActionPerformed(evt);
-            }
-        });
-
-        miCrearReserva.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        miCrearReserva.setText("Crear Reserva");
-        miCrearReserva.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miCrearReservaActionPerformed(evt);
-            }
-        });
-        mReservas.add(miCrearReserva);
-
-        jMenuBar1.add(mReservas);
 
         setJMenuBar(jMenuBar1);
 
